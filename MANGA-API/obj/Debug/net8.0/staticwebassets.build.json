@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "NxaYhNj6XE14KBA4X1DBo+fEbmmrbBLX3gVoXpLPE4U=",
+  "Source": "manga-api",
+  "BasePath": "_content/manga-api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
