@@ -5,7 +5,7 @@
       "name": ".NET Launch API & Swagger",
       "type": "coreclr",
       "request": "launch",
-      "preLaunchTask": "Kill API on 5118",
+      "preLaunchTask": "Prep API (kill, clean, restore, build)",
       "program": "${workspaceFolder}/MANGA-API/bin/Debug/net8.0/manga-api.dll",
       "args": [],
       "cwd": "${workspaceFolder}/MANGA-API",

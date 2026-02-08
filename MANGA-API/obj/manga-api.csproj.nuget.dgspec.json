@@ -28,6 +28,9 @@
             "projectReferences": {
               "/Users/alwynncabigon/dotnet-manga-api/MANGA-APPLICATION/MANGA-APPLICATION.csproj": {
                 "projectPath": "/Users/alwynncabigon/dotnet-manga-api/MANGA-APPLICATION/MANGA-APPLICATION.csproj"
+              },
+              "/Users/alwynncabigon/dotnet-manga-api/MANGA-INFRASTRACTURE/MANGA-INFRASTRACTURE.csproj": {
+                "projectPath": "/Users/alwynncabigon/dotnet-manga-api/MANGA-INFRASTRACTURE/MANGA-INFRASTRACTURE.csproj"
               }
             }
           }
@@ -57,7 +60,7 @@
             },
             "MediatR": {
               "target": "Package",
-              "version": "[12.1.1, )"
+              "version": "[11.1.0, )"
             },
             "MediatR.Extensions.Microsoft.DependencyInjection": {
               "target": "Package",
@@ -136,7 +139,83 @@
           "dependencies": {
             "MediatR": {
               "target": "Package",
-              "version": "[12.1.1, )"
+              "version": "[11.1.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.417/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/alwynncabigon/dotnet-manga-api/MANGA-INFRASTRACTURE/MANGA-INFRASTRACTURE.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/alwynncabigon/dotnet-manga-api/MANGA-INFRASTRACTURE/MANGA-INFRASTRACTURE.csproj",
+        "projectName": "MANGA-INFRASTRACTURE",
+        "projectPath": "/Users/alwynncabigon/dotnet-manga-api/MANGA-INFRASTRACTURE/MANGA-INFRASTRACTURE.csproj",
+        "packagesPath": "/Users/alwynncabigon/.nuget/packages/",
+        "outputPath": "/Users/alwynncabigon/dotnet-manga-api/MANGA-INFRASTRACTURE/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/alwynncabigon/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "/Users/alwynncabigon/dotnet-manga-api/MANGA-APPLICATION/MANGA-APPLICATION.csproj": {
+                "projectPath": "/Users/alwynncabigon/dotnet-manga-api/MANGA-APPLICATION/MANGA-APPLICATION.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.Extensions.Configuration": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Microsoft.Extensions.DependencyInjection": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Microsoft.Extensions.Http": {
+              "target": "Package",
+              "version": "[8.0.0, )"
             }
           },
           "imports": [

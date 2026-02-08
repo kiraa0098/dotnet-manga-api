@@ -19,7 +19,9 @@
 /Users/alwynncabigon/dotnet-manga-api/MANGA-API/bin/Debug/net8.0/Swashbuckle.AspNetCore.SwaggerGen.dll
 /Users/alwynncabigon/dotnet-manga-api/MANGA-API/bin/Debug/net8.0/Swashbuckle.AspNetCore.SwaggerUI.dll
 /Users/alwynncabigon/dotnet-manga-api/MANGA-API/bin/Debug/net8.0/MANGA-APPLICATION.dll
+/Users/alwynncabigon/dotnet-manga-api/MANGA-API/bin/Debug/net8.0/MANGA-INFRASTRACTURE.dll
 /Users/alwynncabigon/dotnet-manga-api/MANGA-API/bin/Debug/net8.0/MANGA-APPLICATION.pdb
+/Users/alwynncabigon/dotnet-manga-api/MANGA-API/bin/Debug/net8.0/MANGA-INFRASTRACTURE.pdb
 /Users/alwynncabigon/dotnet-manga-api/MANGA-API/obj/Debug/net8.0/manga-api.csproj.AssemblyReference.cache
 /Users/alwynncabigon/dotnet-manga-api/MANGA-API/obj/Debug/net8.0/manga-api.GeneratedMSBuildEditorConfig.editorconfig
 /Users/alwynncabigon/dotnet-manga-api/MANGA-API/obj/Debug/net8.0/manga-api.AssemblyInfoInputs.cache
@@ -27,6 +29,7 @@
 /Users/alwynncabigon/dotnet-manga-api/MANGA-API/obj/Debug/net8.0/manga-api.csproj.CoreCompileInputs.cache
 /Users/alwynncabigon/dotnet-manga-api/MANGA-API/obj/Debug/net8.0/manga-api.MvcApplicationPartsAssemblyInfo.cs
 /Users/alwynncabigon/dotnet-manga-api/MANGA-API/obj/Debug/net8.0/manga-api.MvcApplicationPartsAssemblyInfo.cache
+/Users/alwynncabigon/dotnet-manga-api/MANGA-API/obj/Debug/net8.0/manga-api.sourcelink.json
 /Users/alwynncabigon/dotnet-manga-api/MANGA-API/obj/Debug/net8.0/staticwebassets.build.json
 /Users/alwynncabigon/dotnet-manga-api/MANGA-API/obj/Debug/net8.0/staticwebassets.development.json
 /Users/alwynncabigon/dotnet-manga-api/MANGA-API/obj/Debug/net8.0/staticwebassets/msbuild.manga-api.Microsoft.AspNetCore.StaticWebAssets.props

@@ -5,38 +5,37 @@
       "label": "Kill API on 5118",
       "type": "shell",
       "command": "lsof -ti tcp:5118 | xargs kill -9 || true",
-      "problemMatcher": [],
-      "group": "build"
+      "problemMatcher": []
     },
     {
       "label": "Clean API",
       "type": "shell",
       "command": "dotnet clean MANGA-API/manga-api.csproj",
-      "problemMatcher": [],
-      "group": "build"
+      "problemMatcher": []
     },
     {
       "label": "Restore API",
       "type": "shell",
       "command": "dotnet restore MANGA-API/manga-api.csproj",
-      "problemMatcher": [],
-      "group": "build"
+      "problemMatcher": []
     },
     {
       "label": "Build API",
       "type": "shell",
       "command": "dotnet build MANGA-API/manga-api.csproj",
-      "problemMatcher": [],
-      "group": "build"
+      "problemMatcher": []
     },
+
     {
-      "label": "Run API and open Swagger",
-      "type": "shell",
-      "command": "dotnet run --project MANGA-API/manga-api.csproj",
-      "isBackground": true,
-      "problemMatcher": [],
-      "group": "build",
-      "dependsOn": ["Kill API on 5118", "Clean API", "Restore API", "Build API"]
+      "label": "Prep API (kill, clean, restore, build)",
+      "dependsOrder": "sequence",
+      "dependsOn": [
+        "Kill API on 5118",
+        "Clean API",
+        "Restore API",
+        "Build API"
+      ],
+      "problemMatcher": []
     }
   ]
 }
