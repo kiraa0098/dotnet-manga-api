@@ -19,9 +19,11 @@
 /Users/alwynncabigon/dotnet-manga-api/MANGA-API/bin/Debug/net8.0/Swashbuckle.AspNetCore.SwaggerGen.dll
 /Users/alwynncabigon/dotnet-manga-api/MANGA-API/bin/Debug/net8.0/Swashbuckle.AspNetCore.SwaggerUI.dll
 /Users/alwynncabigon/dotnet-manga-api/MANGA-API/bin/Debug/net8.0/MANGA-APPLICATION.dll
+/Users/alwynncabigon/dotnet-manga-api/MANGA-API/bin/Debug/net8.0/MANGA-DOMAIN.dll
 /Users/alwynncabigon/dotnet-manga-api/MANGA-API/bin/Debug/net8.0/MANGA-INFRASTRACTURE.dll
 /Users/alwynncabigon/dotnet-manga-api/MANGA-API/bin/Debug/net8.0/MANGA-APPLICATION.pdb
 /Users/alwynncabigon/dotnet-manga-api/MANGA-API/bin/Debug/net8.0/MANGA-INFRASTRACTURE.pdb
+/Users/alwynncabigon/dotnet-manga-api/MANGA-API/bin/Debug/net8.0/MANGA-DOMAIN.pdb
 /Users/alwynncabigon/dotnet-manga-api/MANGA-API/obj/Debug/net8.0/manga-api.csproj.AssemblyReference.cache
 /Users/alwynncabigon/dotnet-manga-api/MANGA-API/obj/Debug/net8.0/manga-api.GeneratedMSBuildEditorConfig.editorconfig
 /Users/alwynncabigon/dotnet-manga-api/MANGA-API/obj/Debug/net8.0/manga-api.AssemblyInfoInputs.cache

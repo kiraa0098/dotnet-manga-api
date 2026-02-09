@@ -1,11 +1,9 @@
 {
   "version": 2,
-  "dgSpecHash": "vGqMKUsCMEA=",
+  "dgSpecHash": "m1cauh9Fe7s=",
   "success": true,
   "projectFilePath": "/Users/alwynncabigon/dotnet-manga-api/MANGA-INFRASTRACTURE/MANGA-INFRASTRACTURE.csproj",
   "expectedPackageFiles": [
-    "/Users/alwynncabigon/.nuget/packages/mediatr/11.1.0/mediatr.11.1.0.nupkg.sha512",
-    "/Users/alwynncabigon/.nuget/packages/mediatr.contracts/1.0.1/mediatr.contracts.1.0.1.nupkg.sha512",
     "/Users/alwynncabigon/.nuget/packages/microsoft.extensions.configuration/8.0.0/microsoft.extensions.configuration.8.0.0.nupkg.sha512",
     "/Users/alwynncabigon/.nuget/packages/microsoft.extensions.configuration.abstractions/8.0.0/microsoft.extensions.configuration.abstractions.8.0.0.nupkg.sha512",
     "/Users/alwynncabigon/.nuget/packages/microsoft.extensions.configuration.binder/8.0.0/microsoft.extensions.configuration.binder.8.0.0.nupkg.sha512",

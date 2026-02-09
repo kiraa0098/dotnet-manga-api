@@ -2,35 +2,6 @@
   "version": 3,
   "targets": {
     "net8.0": {
-      "MediatR/11.1.0": {
-        "type": "package",
-        "dependencies": {
-          "MediatR.Contracts": "1.0.1"
-        },
-        "compile": {
-          "lib/netstandard2.1/MediatR.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/netstandard2.1/MediatR.dll": {
-            "related": ".xml"
-          }
-        }
-      },
-      "MediatR.Contracts/1.0.1": {
-        "type": "package",
-        "compile": {
-          "lib/netstandard2.0/MediatR.Contracts.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/netstandard2.0/MediatR.Contracts.dll": {
-            "related": ".xml"
-          }
-        }
-      },
       "Microsoft.Extensions.Configuration/8.0.0": {
         "type": "package",
         "dependencies": {
@@ -305,52 +276,19 @@
           "buildTransitive/net6.0/_._": {}
         }
       },
-      "MANGA-APPLICATION/1.0.0": {
+      "MANGA-DOMAIN/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
-        "dependencies": {
-          "MediatR": "11.1.0"
-        },
         "compile": {
-          "bin/placeholder/MANGA-APPLICATION.dll": {}
+          "bin/placeholder/MANGA-DOMAIN.dll": {}
         },
         "runtime": {
-          "bin/placeholder/MANGA-APPLICATION.dll": {}
+          "bin/placeholder/MANGA-DOMAIN.dll": {}
         }
       }
     }
   },
   "libraries": {
-    "MediatR/11.1.0": {
-      "sha512": "YIbtrLOyeCuIv8vIuHL/mMdls5xmgS36pIOJDxKZuu55nxA2MI2Z+E/Uk0z+F/LE11AGmpjplOM0NZ91m5LQBA==",
-      "type": "package",
-      "path": "mediatr/11.1.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "gradient_128x128.png",
-        "lib/netstandard2.1/MediatR.dll",
-        "lib/netstandard2.1/MediatR.xml",
-        "mediatr.11.1.0.nupkg.sha512",
-        "mediatr.nuspec"
-      ]
-    },
-    "MediatR.Contracts/1.0.1": {
-      "sha512": "NsRvOxthhkYml4DcBMyJsmym8C4MchioH7wxKVPEg7plFj9Euh/i4IcmZ3Gvgx6+K8obeuhPeJdoBl56wnuo3A==",
-      "type": "package",
-      "path": "mediatr.contracts/1.0.1",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "gradient_128x128.png",
-        "lib/net461/MediatR.Contracts.dll",
-        "lib/net461/MediatR.Contracts.xml",
-        "lib/netstandard2.0/MediatR.Contracts.dll",
-        "lib/netstandard2.0/MediatR.Contracts.xml",
-        "mediatr.contracts.1.0.1.nupkg.sha512",
-        "mediatr.contracts.nuspec"
-      ]
-    },
     "Microsoft.Extensions.Configuration/8.0.0": {
       "sha512": "0J/9YNXTMWSZP2p2+nvl8p71zpSwokZXZuJW+VjdErkegAnFdO1XlqtA62SJtgVYHdKu3uPxJHcMR/r35HwFBA==",
       "type": "package",
@@ -845,15 +783,15 @@
         "useSharedDesignerContext.txt"
       ]
     },
-    "MANGA-APPLICATION/1.0.0": {
+    "MANGA-DOMAIN/1.0.0": {
       "type": "project",
-      "path": "../MANGA-APPLICATION/MANGA-APPLICATION.csproj",
-      "msbuildProject": "../MANGA-APPLICATION/MANGA-APPLICATION.csproj"
+      "path": "../MANGA-DOMAIN/MANGA-DOMAIN.csproj",
+      "msbuildProject": "../MANGA-DOMAIN/MANGA-DOMAIN.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net8.0": [
-      "MANGA-APPLICATION >= 1.0.0",
+      "MANGA-DOMAIN >= 1.0.0",
       "Microsoft.Extensions.Configuration >= 8.0.0",
       "Microsoft.Extensions.DependencyInjection >= 8.0.0",
       "Microsoft.Extensions.Http >= 8.0.0"
@@ -884,8 +822,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "/Users/alwynncabigon/dotnet-manga-api/MANGA-APPLICATION/MANGA-APPLICATION.csproj": {
-              "projectPath": "/Users/alwynncabigon/dotnet-manga-api/MANGA-APPLICATION/MANGA-APPLICATION.csproj"
+            "/Users/alwynncabigon/dotnet-manga-api/MANGA-DOMAIN/MANGA-DOMAIN.csproj": {
+              "projectPath": "/Users/alwynncabigon/dotnet-manga-api/MANGA-DOMAIN/MANGA-DOMAIN.csproj"
             }
           }
         }

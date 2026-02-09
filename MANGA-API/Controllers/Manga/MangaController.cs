@@ -10,9 +10,21 @@ namespace MANGA_API.Controllers
     {
         [HttpGet("search")]
         [Description("Search Manga")]
-        public async Task<IActionResult> Search([FromQuery] string query)
+        public async Task<IActionResult> Search([FromQuery] string title, [FromQuery] int pageNumber = 1)
         {
-            var result = await Mediator!.Send(new SearchMangaQuery(query));
+            var result = await Mediator!.Send(new SearchMangaQuery(title, pageNumber));
+            return Ok(result);
+        }
+    }
+
+    [Route("manga-api/manga/details")]
+    public class MangaDetailsController : BaseController
+    {
+        [HttpGet("{id}")]
+        [Description("Get Manga Details")]
+        public async Task<IActionResult> GetDetails([FromRoute] string id)
+        {
+            var result = await Mediator!.Send(new GetMangaDetailsQuery(id));
             return Ok(result);
         }
     }

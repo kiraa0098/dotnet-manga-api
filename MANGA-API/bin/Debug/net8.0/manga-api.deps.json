@@ -243,6 +243,8 @@
       "System.Diagnostics.DiagnosticSource/8.0.0": {},
       "MANGA-APPLICATION/1.0.0": {
         "dependencies": {
+          "MANGA-DOMAIN": "1.0.0",
+          "MANGA-INFRASTRACTURE": "1.0.0",
           "MediatR": "11.1.0"
         },
         "runtime": {
@@ -252,9 +254,17 @@
           }
         }
       },
+      "MANGA-DOMAIN/1.0.0": {
+        "runtime": {
+          "MANGA-DOMAIN.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
       "MANGA-INFRASTRACTURE/1.0.0": {
         "dependencies": {
-          "MANGA-APPLICATION": "1.0.0",
+          "MANGA-DOMAIN": "1.0.0",
           "Microsoft.Extensions.Configuration": "8.0.0",
           "Microsoft.Extensions.DependencyInjection": "8.0.0",
           "Microsoft.Extensions.Http": "8.0.0"
@@ -485,6 +495,11 @@
       "hashPath": "system.diagnostics.diagnosticsource.8.0.0.nupkg.sha512"
     },
     "MANGA-APPLICATION/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "MANGA-DOMAIN/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

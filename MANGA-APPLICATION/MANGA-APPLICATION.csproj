@@ -8,6 +8,8 @@
 
   <ItemGroup>
     <ProjectReference Include="../MANGA-DOMAIN/MANGA-DOMAIN.csproj" />
+    <ProjectReference Include="../MANGA-INFRASTRACTURE/MANGA-INFRASTRACTURE.csproj" />
+    
     <PackageReference Include="MediatR" Version="11.1.0" />
   </ItemGroup>
 

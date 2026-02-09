@@ -4,14 +4,14 @@
     "/Users/alwynncabigon/dotnet-manga-api/MANGA-INFRASTRACTURE/MANGA-INFRASTRACTURE.csproj": {}
   },
   "projects": {
-    "/Users/alwynncabigon/dotnet-manga-api/MANGA-APPLICATION/MANGA-APPLICATION.csproj": {
+    "/Users/alwynncabigon/dotnet-manga-api/MANGA-DOMAIN/MANGA-DOMAIN.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/alwynncabigon/dotnet-manga-api/MANGA-APPLICATION/MANGA-APPLICATION.csproj",
-        "projectName": "MANGA-APPLICATION",
-        "projectPath": "/Users/alwynncabigon/dotnet-manga-api/MANGA-APPLICATION/MANGA-APPLICATION.csproj",
+        "projectUniqueName": "/Users/alwynncabigon/dotnet-manga-api/MANGA-DOMAIN/MANGA-DOMAIN.csproj",
+        "projectName": "MANGA-DOMAIN",
+        "projectPath": "/Users/alwynncabigon/dotnet-manga-api/MANGA-DOMAIN/MANGA-DOMAIN.csproj",
         "packagesPath": "/Users/alwynncabigon/.nuget/packages/",
-        "outputPath": "/Users/alwynncabigon/dotnet-manga-api/MANGA-APPLICATION/obj/",
+        "outputPath": "/Users/alwynncabigon/dotnet-manga-api/MANGA-DOMAIN/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/alwynncabigon/.nuget/NuGet/NuGet.Config"
@@ -42,12 +42,6 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
-          "dependencies": {
-            "MediatR": {
-              "target": "Package",
-              "version": "[11.1.0, )"
-            }
-          },
           "imports": [
             "net461",
             "net462",
@@ -90,8 +84,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "/Users/alwynncabigon/dotnet-manga-api/MANGA-APPLICATION/MANGA-APPLICATION.csproj": {
-                "projectPath": "/Users/alwynncabigon/dotnet-manga-api/MANGA-APPLICATION/MANGA-APPLICATION.csproj"
+              "/Users/alwynncabigon/dotnet-manga-api/MANGA-DOMAIN/MANGA-DOMAIN.csproj": {
+                "projectPath": "/Users/alwynncabigon/dotnet-manga-api/MANGA-DOMAIN/MANGA-DOMAIN.csproj"
               }
             }
           }

@@ -1,12 +1,17 @@
 /Users/alwynncabigon/dotnet-manga-api/MANGA-APPLICATION/bin/Debug/net8.0/MANGA-APPLICATION.deps.json
 /Users/alwynncabigon/dotnet-manga-api/MANGA-APPLICATION/bin/Debug/net8.0/MANGA-APPLICATION.dll
 /Users/alwynncabigon/dotnet-manga-api/MANGA-APPLICATION/bin/Debug/net8.0/MANGA-APPLICATION.pdb
+/Users/alwynncabigon/dotnet-manga-api/MANGA-APPLICATION/bin/Debug/net8.0/MANGA-DOMAIN.dll
+/Users/alwynncabigon/dotnet-manga-api/MANGA-APPLICATION/bin/Debug/net8.0/MANGA-INFRASTRACTURE.dll
+/Users/alwynncabigon/dotnet-manga-api/MANGA-APPLICATION/bin/Debug/net8.0/MANGA-DOMAIN.pdb
+/Users/alwynncabigon/dotnet-manga-api/MANGA-APPLICATION/bin/Debug/net8.0/MANGA-INFRASTRACTURE.pdb
 /Users/alwynncabigon/dotnet-manga-api/MANGA-APPLICATION/obj/Debug/net8.0/MANGA-APPLICATION.csproj.AssemblyReference.cache
 /Users/alwynncabigon/dotnet-manga-api/MANGA-APPLICATION/obj/Debug/net8.0/MANGA-APPLICATION.GeneratedMSBuildEditorConfig.editorconfig
 /Users/alwynncabigon/dotnet-manga-api/MANGA-APPLICATION/obj/Debug/net8.0/MANGA-APPLICATION.AssemblyInfoInputs.cache
 /Users/alwynncabigon/dotnet-manga-api/MANGA-APPLICATION/obj/Debug/net8.0/MANGA-APPLICATION.AssemblyInfo.cs
 /Users/alwynncabigon/dotnet-manga-api/MANGA-APPLICATION/obj/Debug/net8.0/MANGA-APPLICATION.csproj.CoreCompileInputs.cache
 /Users/alwynncabigon/dotnet-manga-api/MANGA-APPLICATION/obj/Debug/net8.0/MANGA-APPLICATION.sourcelink.json
+/Users/alwynncabigon/dotnet-manga-api/MANGA-APPLICATION/obj/Debug/net8.0/MANGA-AP.D68A70AC.Up2Date
 /Users/alwynncabigon/dotnet-manga-api/MANGA-APPLICATION/obj/Debug/net8.0/MANGA-APPLICATION.dll
 /Users/alwynncabigon/dotnet-manga-api/MANGA-APPLICATION/obj/Debug/net8.0/refint/MANGA-APPLICATION.dll
 /Users/alwynncabigon/dotnet-manga-api/MANGA-APPLICATION/obj/Debug/net8.0/MANGA-APPLICATION.pdb

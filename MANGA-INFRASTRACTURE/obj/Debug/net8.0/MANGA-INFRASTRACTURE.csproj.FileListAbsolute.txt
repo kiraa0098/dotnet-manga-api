@@ -1,8 +1,8 @@
 /Users/alwynncabigon/dotnet-manga-api/MANGA-INFRASTRACTURE/bin/Debug/net8.0/MANGA-INFRASTRACTURE.deps.json
 /Users/alwynncabigon/dotnet-manga-api/MANGA-INFRASTRACTURE/bin/Debug/net8.0/MANGA-INFRASTRACTURE.dll
 /Users/alwynncabigon/dotnet-manga-api/MANGA-INFRASTRACTURE/bin/Debug/net8.0/MANGA-INFRASTRACTURE.pdb
-/Users/alwynncabigon/dotnet-manga-api/MANGA-INFRASTRACTURE/bin/Debug/net8.0/MANGA-APPLICATION.dll
-/Users/alwynncabigon/dotnet-manga-api/MANGA-INFRASTRACTURE/bin/Debug/net8.0/MANGA-APPLICATION.pdb
+/Users/alwynncabigon/dotnet-manga-api/MANGA-INFRASTRACTURE/bin/Debug/net8.0/MANGA-DOMAIN.dll
+/Users/alwynncabigon/dotnet-manga-api/MANGA-INFRASTRACTURE/bin/Debug/net8.0/MANGA-DOMAIN.pdb
 /Users/alwynncabigon/dotnet-manga-api/MANGA-INFRASTRACTURE/obj/Debug/net8.0/MANGA-INFRASTRACTURE.csproj.AssemblyReference.cache
 /Users/alwynncabigon/dotnet-manga-api/MANGA-INFRASTRACTURE/obj/Debug/net8.0/MANGA-INFRASTRACTURE.GeneratedMSBuildEditorConfig.editorconfig
 /Users/alwynncabigon/dotnet-manga-api/MANGA-INFRASTRACTURE/obj/Debug/net8.0/MANGA-INFRASTRACTURE.AssemblyInfoInputs.cache

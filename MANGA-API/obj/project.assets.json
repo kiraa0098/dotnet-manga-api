@@ -516,6 +516,8 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
+          "MANGA-DOMAIN": "1.0.0",
+          "MANGA-INFRASTRACTURE": "1.0.0",
           "MediatR": "11.1.0"
         },
         "compile": {
@@ -525,11 +527,21 @@
           "bin/placeholder/MANGA-APPLICATION.dll": {}
         }
       },
+      "MANGA-DOMAIN/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/MANGA-DOMAIN.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/MANGA-DOMAIN.dll": {}
+        }
+      },
       "MANGA-INFRASTRACTURE/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
-          "MANGA-APPLICATION": "1.0.0",
+          "MANGA-DOMAIN": "1.0.0",
           "Microsoft.Extensions.Configuration": "8.0.0",
           "Microsoft.Extensions.DependencyInjection": "8.0.0",
           "Microsoft.Extensions.Http": "8.0.0"
@@ -1608,6 +1620,11 @@
       "path": "../MANGA-APPLICATION/MANGA-APPLICATION.csproj",
       "msbuildProject": "../MANGA-APPLICATION/MANGA-APPLICATION.csproj"
     },
+    "MANGA-DOMAIN/1.0.0": {
+      "type": "project",
+      "path": "../MANGA-DOMAIN/MANGA-DOMAIN.csproj",
+      "msbuildProject": "../MANGA-DOMAIN/MANGA-DOMAIN.csproj"
+    },
     "MANGA-INFRASTRACTURE/1.0.0": {
       "type": "project",
       "path": "../MANGA-INFRASTRACTURE/MANGA-INFRASTRACTURE.csproj",
@@ -1632,11 +1649,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/alwynncabigon/dotnet-manga-api/manga-api/manga-api.csproj",
-      "projectName": "manga-api",
-      "projectPath": "/Users/alwynncabigon/dotnet-manga-api/manga-api/manga-api.csproj",
+      "projectUniqueName": "/Users/alwynncabigon/dotnet-manga-api/MANGA-API/MANGA-API.csproj",
+      "projectName": "MANGA-API",
+      "projectPath": "/Users/alwynncabigon/dotnet-manga-api/MANGA-API/MANGA-API.csproj",
       "packagesPath": "/Users/alwynncabigon/.nuget/packages/",
-      "outputPath": "/Users/alwynncabigon/dotnet-manga-api/manga-api/obj/",
+      "outputPath": "/Users/alwynncabigon/dotnet-manga-api/MANGA-API/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/alwynncabigon/.nuget/NuGet/NuGet.Config"
@@ -1722,13 +1739,5 @@
         "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.417/PortableRuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1900",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Error occurred while getting package vulnerability data: Unable to load the service index for source https://api.nuget.org/v3/index.json."
-    }
-  ]
+  }
 }

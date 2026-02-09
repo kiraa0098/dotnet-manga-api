@@ -1,6 +1,6 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using MANGA_APPLICATION.Abstractions.External;
+using MANGA_DOMAIN.Abstractions.Interfaces;
 using MANGA_INFRASTRUCTURE.External.MangaDex;
 
 namespace MANGA_INFRASTRUCTURE;
