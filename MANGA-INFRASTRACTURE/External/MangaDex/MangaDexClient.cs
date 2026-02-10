@@ -50,6 +50,8 @@ namespace MANGA_INFRASTRUCTURE.External.MangaDex
                 string? mangaCoverUrl = null;
                 string? mangaAuthor = null;
                 string? mangaArtist = null;
+                string? mangaAuthorId = null;
+                string? mangaArtistId = null;
                 List<string>? mangaTags = null;
 
                 if (manga.TryGetProperty("relationships", out var relationships))
@@ -75,11 +77,19 @@ namespace MANGA_INFRASTRUCTURE.External.MangaDex
                                 {
                                     mangaAuthor = authorNameProp.GetString();
                                 }
+                                else if (rel.TryGetProperty("id", out var authorIdProp))
+                                {
+                                    mangaAuthorId = authorIdProp.GetString();
+                                }
                                 break;
                             case "artist":
                                 if (rel.TryGetProperty("attributes", out var artistAttrs) && artistAttrs.TryGetProperty("name", out var artistNameProp))
                                 {
                                     mangaArtist = artistNameProp.GetString();
+                                }
+                                else if (rel.TryGetProperty("id", out var artistIdProp))
+                                {
+                                    mangaArtistId = artistIdProp.GetString();
                                 }
                                 break;
                             case "tag":
@@ -93,6 +103,16 @@ namespace MANGA_INFRASTRUCTURE.External.MangaDex
                                 break;
                         }
                     }
+                }
+
+                // Fetch author/artist name if missing but ID is present
+                if (mangaAuthor == null && !string.IsNullOrEmpty(mangaAuthorId))
+                {
+                    mangaAuthor = await FetchPersonNameAsync(mangaAuthorId, "author", ct);
+                }
+                if (mangaArtist == null && !string.IsNullOrEmpty(mangaArtistId))
+                {
+                    mangaArtist = await FetchPersonNameAsync(mangaArtistId, "artist", ct);
                 }
 
                 var mangaDetails = new List<MangaSourceEntity>();
@@ -183,6 +203,8 @@ namespace MANGA_INFRASTRUCTURE.External.MangaDex
                         List<string>? mangaTags = null;
                         string? mangaAuthor = null;
                         string? mangaArtist = null;
+                        string? mangaAuthorId = null;
+                        string? mangaArtistId = null;
                         if (manga.TryGetProperty("relationships", out var relationships))
                         {
                             mangaTags = new List<string>();
@@ -216,6 +238,10 @@ namespace MANGA_INFRASTRUCTURE.External.MangaDex
                                     {
                                         mangaAuthor = authorNameProp.GetString();
                                     }
+                                    else if (rel.TryGetProperty("id", out var authorIdProp))
+                                    {
+                                        mangaAuthorId = authorIdProp.GetString();
+                                    }
                                 }
                                 else if (relType == "artist")
                                 {
@@ -223,9 +249,53 @@ namespace MANGA_INFRASTRUCTURE.External.MangaDex
                                     {
                                         mangaArtist = artistNameProp.GetString();
                                     }
+                                    else if (rel.TryGetProperty("id", out var artistIdProp))
+                                    {
+                                        mangaArtistId = artistIdProp.GetString();
+                                    }
                                 }
                             }
                         }
+
+                        // Fetch author/artist name if missing but ID is present
+                        if (mangaAuthor == null && !string.IsNullOrEmpty(mangaAuthorId))
+                        {
+                            mangaAuthor = await FetchPersonNameAsync(mangaAuthorId, "author", ct);
+                        }
+                        if (mangaArtist == null && !string.IsNullOrEmpty(mangaArtistId))
+                        {
+                            mangaArtist = await FetchPersonNameAsync(mangaArtistId, "artist", ct);
+                        }
+                                // Helper to fetch author/artist name by ID
+                                private async Task<string?> FetchPersonNameAsync(string id, string type, CancellationToken ct)
+                                {
+                                    try
+                                    {
+                                        var url = type == "author"
+                                            ? $"https://api.mangadex.org/author/{id}"
+                                            : $"https://api.mangadex.org/artist/{id}";
+                                        var request = new HttpRequestMessage(HttpMethod.Get, url);
+                                        request.Headers.UserAgent.ParseAdd(_options.UserAgent);
+                                        var response = await _httpClient.SendAsync(request, ct);
+                                        if (!response.IsSuccessStatusCode)
+                                        {
+                                            _logger.LogWarning("MangaDex {Type} API returned: {StatusCode} - {ReasonPhrase}", type, response.StatusCode, response.ReasonPhrase);
+                                            return null;
+                                        }
+                                        var json = await response.Content.ReadAsStringAsync(ct);
+                                        var doc = JsonDocument.Parse(json);
+                                        if (doc.RootElement.TryGetProperty("data", out var data) && data.TryGetProperty("attributes", out var attrs) && attrs.TryGetProperty("name", out var nameProp))
+                                        {
+                                            return nameProp.GetString();
+                                        }
+                                        return null;
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        _logger.LogWarning(ex, "Failed to fetch {Type} name for id {Id}", type, id);
+                                        return null;
+                                    }
+                                }
                         searchResults.Add(new MangaSourceEntity(
                             mangaId ?? string.Empty,
                             mangaTitle ?? string.Empty,
