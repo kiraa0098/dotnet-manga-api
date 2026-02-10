@@ -2,6 +2,7 @@ using System.ComponentModel;
 using Microsoft.AspNetCore.Mvc;
 using MediatR;
 using MANGA_APPLICATION.Manga.Queries;
+using MANGA_APPLICATION.Manga.DTOs.Request;
 
 namespace MANGA_API.Controllers
 {
@@ -10,9 +11,9 @@ namespace MANGA_API.Controllers
     {
         [HttpGet("search")]
         [Description("Search Manga")]
-        public async Task<IActionResult> Search([FromQuery] string title, [FromQuery] int pageNumber = 1)
+        public async Task<IActionResult> Search([FromQuery] SearchMangaRequest requestDto)
         {
-            var result = await Mediator!.Send(new SearchMangaQuery(title, pageNumber));
+            var result = await Mediator!.Send(new SearchMangaQuery(requestDto));
             return Ok(result);
         }
     }
@@ -22,6 +23,7 @@ namespace MANGA_API.Controllers
     {
         [HttpGet("{id}")]
         [Description("Get Manga Details")]
+        // TODO: Refactor GetDetails to accept a request DTO via model binding, like Search. (See Search endpoint for reference.)
         public async Task<IActionResult> GetDetails([FromRoute] string id)
         {
             var result = await Mediator!.Send(new GetMangaDetailsQuery(id));

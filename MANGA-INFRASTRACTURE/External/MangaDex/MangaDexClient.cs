@@ -28,7 +28,7 @@ namespace MANGA_INFRASTRUCTURE.External.MangaDex
         {
             try
             {
-                var url = $"{_options.BaseUrl}/manga/{id}";
+                var url = _options.BuildGetByIdUrl(id);
                 var request = new HttpRequestMessage(HttpMethod.Get, url);
                 request.Headers.UserAgent.ParseAdd(_options.UserAgent);
                 var response = await _httpClient.SendAsync(request, ct);
@@ -41,14 +41,75 @@ namespace MANGA_INFRASTRUCTURE.External.MangaDex
 
                 var json = await response.Content.ReadAsStringAsync(ct);
                 var doc = JsonDocument.Parse(json);
+
                 var manga = doc.RootElement.GetProperty("data");
                 var mangaId = manga.GetProperty("id").GetString();
                 var mangaTitleObj = manga.GetProperty("attributes").GetProperty("title");
                 var mangaTitle = mangaTitleObj.TryGetProperty("en", out var en) ? en.GetString() : null;
-                var description = manga.GetProperty("attributes").TryGetProperty("description", out var descObj) && descObj.TryGetProperty("en", out var descEn) ? descEn.GetString() : null;
+                string? mangaDescription = manga.GetProperty("attributes").TryGetProperty("description", out var descObj) && descObj.TryGetProperty("en", out var descEn) ? descEn.GetString() : null;
+                string? mangaCoverUrl = null;
+                string? mangaAuthor = null;
+                string? mangaArtist = null;
+                List<string>? mangaTags = null;
 
-                // TODO: CoverUrl and Chapters
-                return new List<MangaSourceEntity> { new MangaSourceEntity(mangaId ?? string.Empty, mangaTitle ?? string.Empty, description, null) };
+                if (manga.TryGetProperty("relationships", out var relationships))
+                {
+                    mangaTags = new List<string>();
+                    foreach (var rel in relationships.EnumerateArray())
+                    {
+                        var relType = rel.GetProperty("type").GetString();
+                        switch (relType)
+                        {
+                            case "cover_art":
+                                if (rel.TryGetProperty("attributes", out var coverAttrs) && coverAttrs.TryGetProperty("fileName", out var fileNameProp))
+                                {
+                                    var fileName = fileNameProp.GetString();
+                                    if (!string.IsNullOrEmpty(mangaId) && !string.IsNullOrEmpty(fileName))
+                                    {
+                                        mangaCoverUrl = $"{_options.CoverBaseUrl}/{mangaId}/{fileName}";
+                                    }
+                                }
+                                break;
+                            case "author":
+                                if (rel.TryGetProperty("attributes", out var authorAttrs) && authorAttrs.TryGetProperty("name", out var authorNameProp))
+                                {
+                                    mangaAuthor = authorNameProp.GetString();
+                                }
+                                break;
+                            case "artist":
+                                if (rel.TryGetProperty("attributes", out var artistAttrs) && artistAttrs.TryGetProperty("name", out var artistNameProp))
+                                {
+                                    mangaArtist = artistNameProp.GetString();
+                                }
+                                break;
+                            case "tag":
+                                if (rel.TryGetProperty("attributes", out var tagAttrs) && tagAttrs.TryGetProperty("name", out var tagNameObj))
+                                {
+                                    if (tagNameObj.TryGetProperty("en", out var tagEn))
+                                    {
+                                        mangaTags.Add(tagEn.GetString()!);
+                                    }
+                                }
+                                break;
+                        }
+                    }
+                }
+
+                var mangaDetails = new List<MangaSourceEntity>();
+                mangaDetails.Add(new MangaSourceEntity(
+                    mangaId ?? string.Empty,
+                    mangaTitle ?? string.Empty,
+                    mangaDescription,
+                    mangaCoverUrl,
+                    mangaAuthor,
+                    mangaArtist,
+                    mangaTags,
+                    null, // TODO: Null for now, need to determine how to handle language for single manga retrieval
+                    null, // TODO: Null for now, need to determine how to handle ongoing status for single manga retrieval
+                    null // TODO: Null for now, need to determine how to handle chapter total for single manga retrieval
+                    ));
+
+                return mangaDetails;
             }
             catch (Exception ex)
             {
@@ -60,13 +121,12 @@ namespace MANGA_INFRASTRUCTURE.External.MangaDex
 
 
         #region SearchAsync
-        public async Task<IReadOnlyList<MangaSourceEntity>> SearchAsync(string title, int pageNumber, CancellationToken ct)
+        public async Task<IReadOnlyList<MangaSourceEntity>> SearchAsync(string title, int pageNumber, string languages, CancellationToken ct)
         {
             try
             {
                 int offset = MANGA_DOMAIN.Enums.MangaPagingConstants.GetOffset(pageNumber);
-
-                var url = _options.BuildSearchUrl(title, offset);
+                var url = _options.BuildSearchUrl(title, offset, languages);
                 _logger.LogDebug("MangaDex Search URL: {Url}", url);
 
                 var request = new HttpRequestMessage(HttpMethod.Get, url);
@@ -87,37 +147,101 @@ namespace MANGA_INFRASTRUCTURE.External.MangaDex
 
                 foreach (var manga in doc.RootElement.GetProperty("data").EnumerateArray())
                 {
-                    var mangaId = manga.GetProperty("id").GetString();
-                    var mangaTitleObj = manga.GetProperty("attributes").GetProperty("title");
-                    var mangaTitle = mangaTitleObj.TryGetProperty("en", out var en) ? en.GetString() : null;
-
-                    string? description = null;
-                    if (manga.GetProperty("attributes").TryGetProperty("description", out var descObj) && descObj.TryGetProperty("en", out var descEn))
+                    try
                     {
-                        description = descEn.GetString();
-                    }
+                        var mangaId = manga.GetProperty("id").GetString();
+                        var attr = manga.GetProperty("attributes");
+                        var mangaTitleObj = attr.GetProperty("title");
+                        var mangaTitle = mangaTitleObj.TryGetProperty("en", out var en) ? en.GetString() : null;
 
-                    string? coverUrl = null;
-                    if (manga.TryGetProperty("relationships", out var relationships))
-                    {
-                        foreach (var rel in relationships.EnumerateArray())
+                        string? mangaDescription = null;
+                        if (attr.TryGetProperty("description", out var descObj) && descObj.TryGetProperty("en", out var descEn))
                         {
-                            if (rel.GetProperty("type").GetString() == "cover_art")
+                            mangaDescription = string.IsNullOrWhiteSpace(descEn.GetString()) ? "no description" : descEn.GetString();
+                        }
+                        if (string.IsNullOrWhiteSpace(mangaDescription))
+                            mangaDescription = "no description";
+
+                        string? mangaLanguage = attr.TryGetProperty("originalLanguage", out var langProp) ? langProp.GetString() : null;
+
+                        bool? ongoing = null;
+                        if (attr.TryGetProperty("status", out var statusProp))
+                        {
+                            var status = statusProp.GetString();
+                            if (!string.IsNullOrEmpty(status))
+                                ongoing = status.ToLowerInvariant() == "ongoing";
+                        }
+
+                        int? chapterTotal = null;
+                        if (attr.TryGetProperty("lastChapter", out var lastChapterProp))
+                        {
+                            if (int.TryParse(lastChapterProp.GetString(), out var chTotal))
+                                chapterTotal = chTotal;
+                        }
+
+                        string? mangaCoverUrl = null;
+                        List<string>? mangaTags = null;
+                        string? mangaAuthor = null;
+                        string? mangaArtist = null;
+                        if (manga.TryGetProperty("relationships", out var relationships))
+                        {
+                            mangaTags = new List<string>();
+                            foreach (var rel in relationships.EnumerateArray())
                             {
-                                var coverId = rel.GetProperty("id").GetString();
-                                if (rel.TryGetProperty("attributes", out var coverAttrs) && coverAttrs.TryGetProperty("fileName", out var fileNameProp))
+                                var relType = rel.GetProperty("type").GetString();
+                                if (relType == "cover_art")
                                 {
-                                    var fileName = fileNameProp.GetString();
-                                    if (!string.IsNullOrEmpty(mangaId) && !string.IsNullOrEmpty(fileName))
+                                    if (rel.TryGetProperty("attributes", out var coverAttrs) && coverAttrs.TryGetProperty("fileName", out var fileNameProp))
                                     {
-                                        coverUrl = $"{_options.CoverBaseUrl}/{mangaId}/{fileName}";
+                                        var fileName = fileNameProp.GetString();
+                                        if (!string.IsNullOrEmpty(mangaId) && !string.IsNullOrEmpty(fileName))
+                                        {
+                                            mangaCoverUrl = $"{_options.CoverBaseUrl}/{mangaId}/{fileName}";
+                                        }
                                     }
                                 }
-                                break;
+                                else if (relType == "tag")
+                                {
+                                    if (rel.TryGetProperty("attributes", out var tagAttrs) && tagAttrs.TryGetProperty("name", out var tagNameObj))
+                                    {
+                                        if (tagNameObj.TryGetProperty("en", out var tagEn))
+                                        {
+                                            mangaTags.Add(tagEn.GetString()!);
+                                        }
+                                    }
+                                }
+                                else if (relType == "author")
+                                {
+                                    if (rel.TryGetProperty("attributes", out var authorAttrs) && authorAttrs.TryGetProperty("name", out var authorNameProp))
+                                    {
+                                        mangaAuthor = authorNameProp.GetString();
+                                    }
+                                }
+                                else if (relType == "artist")
+                                {
+                                    if (rel.TryGetProperty("attributes", out var artistAttrs) && artistAttrs.TryGetProperty("name", out var artistNameProp))
+                                    {
+                                        mangaArtist = artistNameProp.GetString();
+                                    }
+                                }
                             }
                         }
+                        searchResults.Add(new MangaSourceEntity(
+                            mangaId ?? string.Empty,
+                            mangaTitle ?? string.Empty,
+                            mangaDescription,
+                            mangaCoverUrl,
+                            mangaAuthor,
+                            mangaArtist,
+                            mangaTags,
+                            mangaLanguage,
+                            ongoing,
+                            chapterTotal));
                     }
-                    searchResults.Add(new MangaSourceEntity(mangaId ?? string.Empty, mangaTitle ?? string.Empty, description, coverUrl));
+                    catch (Exception itemEx)
+                    {
+                        _logger.LogWarning(itemEx, "Failed to parse manga item in search results. Skipping item.");
+                    }
                 }
 
                 return searchResults;
